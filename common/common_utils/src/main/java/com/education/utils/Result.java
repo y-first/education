@@ -34,14 +34,14 @@ public class Result<T> {
 
     public static<T> Result<T> ok(T data){
         Result<T> resp = new Result<T>(data);
-        resp.setCode(0);//操作成功
+        resp.setCode(20000);//操作成功
         resp.setMsg("success");
         return resp;
     }
 
     public static<T> Result<T> fail(String data){
         Result<T> resp = new Result<T>();
-        resp.setCode(1);//操作失败
+        resp.setCode(20001);//操作失败
         resp.setMsg(data);
         return resp;
     }

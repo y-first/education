@@ -1,9 +1,14 @@
 package com.education.utils;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Condition {
-    private Long current;
-    private Long size;
+    private Integer current;
+    private Integer size;
+
 }

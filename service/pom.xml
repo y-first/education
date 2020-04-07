@@ -12,6 +12,7 @@
      <packaging>pom</packaging>
     <modules>
         <module>edu_teacher</module>
+        <module>service-oss</module>
     </modules>
     <artifactId>service</artifactId>
 

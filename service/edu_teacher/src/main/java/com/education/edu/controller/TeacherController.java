@@ -32,11 +32,14 @@ import java.util.logging.Level;
  */
 @Api(description = "讲师管理")
 @RestController
-@RequestMapping("/eduservice/teacher")
+@CrossOrigin
+@RequestMapping("/edu/teacher")
 public class TeacherController {
 
     @Autowired
     private TeacherService teacherService;
+
+
 
 
     /**
@@ -68,7 +71,7 @@ public class TeacherController {
     public Result<Object> pageTeacher(Condition condition) {
         Page<Teacher> page = new Page<>(condition.getCurrent(), condition.getSize());
         Map<String, Object> m = new HashMap<>();
-        IPage<Teacher> page1 = teacherService.page(page, null);
+        IPage<Teacher> page1 = teacherService.page(page, new QueryWrapper<Teacher>().orderByDesc("gmt_create"));
         m.put("total", page1.getTotal());
         m.put("rows", page1.getRecords());
         return Result.ok(m);
@@ -87,10 +90,12 @@ public class TeacherController {
     }
 
     @ApiOperation("条件分页查询讲师")
-    @GetMapping("pageTeacherCon")
+    @GetMapping("pageTeacherCon/{current}/{size}")
     public Result<Object> pageTeacherCon
-            (Condition condition, TeacherVo tv) {
-        IPage<Teacher> page1 =   teacherService.pageTeacherCon(condition,tv);
+            (@PathVariable("current")String current,@PathVariable("size")String size, TeacherVo tv) {
+
+        Condition condition = new Condition( Integer.valueOf(current), Integer.valueOf(size));
+        IPage<Teacher> page1 = teacherService.pageTeacherCon(condition, tv);
         Map<String, Object> m = new HashMap<>();
         m.put("total", page1.getTotal());
         m.put("rows", page1.getRecords());
@@ -100,17 +105,17 @@ public class TeacherController {
 
     @ApiOperation("通过id查询讲师")
     @GetMapping("getTeacher/{id}")
-    public Result<Object> updateTeacher(@PathVariable("id")String id){
+    public Result<Object> updateTeacher(@PathVariable("id") String id) {
         return Result.ok(teacherService.getById(id));
     }
 
     @ApiOperation("讲师修改")
     @PostMapping("updateTeacher")
-    public Result<Object> updateTeacher(@RequestBody Teacher teacher){
+    public Result<Object> updateTeacher(@RequestBody Teacher teacher) {
         boolean b = teacherService.updateById(teacher);
-        if(b){
+        if (b) {
             return Result.ok(null);
-        }else {
+        } else {
             return Result.fail(null);
         }
     }

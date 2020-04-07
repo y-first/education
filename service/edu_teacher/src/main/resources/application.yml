@@ -13,3 +13,7 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss  #设置时间格式
     time-zone: GMT+8   #设置时区
+
+  profiles:
+    active: dev
+
