@@ -13,6 +13,7 @@
     <modules>
         <module>edu_teacher</module>
         <module>service-oss</module>
+        <module>service-vod</module>
     </modules>
     <artifactId>service</artifactId>
 
