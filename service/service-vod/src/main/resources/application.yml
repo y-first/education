@@ -9,7 +9,12 @@ spring:
     multipart:
       max-file-size: 1024MB
       max-request-size: 1024MB
-accessKeyId: 
-accessKeySecret:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+accessKeyId: "LTAI4Fk2YdPh2q6xfCZTfgjq"
+accessKeySecret: "mrFycyHGAyw3d7kCBnoPW9ntyI6YVL"
+
 
 
